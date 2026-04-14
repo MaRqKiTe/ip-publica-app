@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi IP Pública</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geolocalización por IP</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-
   <main class="container">
-    <div class="card">
-      <h1>Tu IP pública</h1>
+    <section class="card">
+      <h1>Información de tu IP</h1>
       <p class="description">
-        Esta aplicación consulta tu IP pública usando la API de ipify.
+        Esta aplicación obtiene tu IP pública y consulta su geolocalización.
       </p>
 
-      <div class="ip-box">
-        <span id="ip">Cargando...</span>
+      <div class="info-box">
+        <p><strong>IP:</strong> <span id="ip">Cargando...</span></p>
+        <p><strong>Continente:</strong> <span id="continent">Cargando...</span></p>
+        <p><strong>Ciudad:</strong> <span id="city">Cargando...</span></p>
       </div>
 
-      <button id="reloadBtn">Actualizar IP</button>
+      <button id="btnActualizar">Actualizar información</button>
       <p id="status" class="status"></p>
-    </div>
+    </section>
   </main>
 
   <script src="assets/js/app.js"></script>
