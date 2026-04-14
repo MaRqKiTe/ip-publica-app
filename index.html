@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi IP Pública</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <main class="container">
+    <div class="card">
+      <h1>Tu IP pública</h1>
+      <p class="description">
+        Esta aplicación consulta tu IP pública usando la API de ipify.
+      </p>
+
+      <div class="ip-box">
+        <span id="ip">Cargando...</span>
+      </div>
+
+      <button id="reloadBtn">Actualizar IP</button>
+      <p id="status" class="status"></p>
+    </div>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
