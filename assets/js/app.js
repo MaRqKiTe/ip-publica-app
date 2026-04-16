@@ -10,6 +10,7 @@ const currencyElement = document.getElementById("currency");
 const countryFlagElement = document.getElementById("countryFlag");
 const statusElement = document.getElementById("status");
 const btnActualizar = document.getElementById("btnActualizar");
+const countryNameFlagElement = document.getElementById("countryNameFlag");
 
 const API_KEY = "2eec8cf34d034595b930d4845a026d54";
 
@@ -44,6 +45,7 @@ function limpiarPantalla() {
   latitudeElement.textContent = "Cargando...";
   timezoneElement.textContent = "Cargando...";
   currencyElement.textContent = "Cargando...";
+  countryNameFlagElement.textContent = "Cargando...";
   countryFlagElement.src = "";
   countryFlagElement.alt = "Bandera del país";
 }
@@ -58,6 +60,7 @@ function mostrarError() {
   latitudeElement.textContent = "No disponible";
   timezoneElement.textContent = "No disponible";
   currencyElement.textContent = "No disponible";
+  countryNameFlagElement.textContent = "No disponible";
   countryFlagElement.src = "";
 }
 
@@ -83,6 +86,7 @@ async function cargarInformacionIP() {
 
     countryFlagElement.src = geoData.location.country_flag;
     countryFlagElement.alt = `Bandera de ${geoData.location.country_name}`;
+    countryNameFlagElement.textContent = geoData.location.country_name;
 
     console.log("Respuesta completa de geolocalización:", geoData);
 
