@@ -1,6 +1,13 @@
 const ipElement = document.getElementById("ip");
-const continentElement = document.getElementById("continent");
+const officialCountryElement = document.getElementById("officialCountry");
+const countryElement = document.getElementById("country");
+const capitalElement = document.getElementById("capital");
 const cityElement = document.getElementById("city");
+const longitudeElement = document.getElementById("longitude");
+const latitudeElement = document.getElementById("latitude");
+const timezoneElement = document.getElementById("timezone");
+const currencyElement = document.getElementById("currency");
+const countryFlagElement = document.getElementById("countryFlag");
 const statusElement = document.getElementById("status");
 const btnActualizar = document.getElementById("btnActualizar");
 
@@ -27,12 +34,37 @@ async function obtenerGeolocalizacion(ip) {
   return await response.json();
 }
 
+function limpiarPantalla() {
+  ipElement.textContent = "Cargando...";
+  officialCountryElement.textContent = "Cargando...";
+  countryElement.textContent = "Cargando...";
+  capitalElement.textContent = "Cargando...";
+  cityElement.textContent = "Cargando...";
+  longitudeElement.textContent = "Cargando...";
+  latitudeElement.textContent = "Cargando...";
+  timezoneElement.textContent = "Cargando...";
+  currencyElement.textContent = "Cargando...";
+  countryFlagElement.src = "";
+  countryFlagElement.alt = "Bandera del país";
+}
+
+function mostrarError() {
+  ipElement.textContent = "No disponible";
+  officialCountryElement.textContent = "No disponible";
+  countryElement.textContent = "No disponible";
+  capitalElement.textContent = "No disponible";
+  cityElement.textContent = "No disponible";
+  longitudeElement.textContent = "No disponible";
+  latitudeElement.textContent = "No disponible";
+  timezoneElement.textContent = "No disponible";
+  currencyElement.textContent = "No disponible";
+  countryFlagElement.src = "";
+}
+
 async function cargarInformacionIP() {
   try {
+    limpiarPantalla();
     statusElement.textContent = "Consultando información...";
-    ipElement.textContent = "Cargando...";
-    continentElement.textContent = "Cargando...";
-    cityElement.textContent = "Cargando...";
 
     const ipData = await obtenerIPPublica();
     const ip = ipData.ip;
@@ -40,19 +72,24 @@ async function cargarInformacionIP() {
     const geoData = await obtenerGeolocalizacion(ip);
 
     ipElement.textContent = geoData.ip;
-    continentElement.textContent = geoData.location.country_name;
+    officialCountryElement.textContent = geoData.location.country_name_official;
+    countryElement.textContent = geoData.location.country_name;
+    capitalElement.textContent = geoData.location.country_capital;
     cityElement.textContent = geoData.location.city;
+    longitudeElement.textContent = geoData.location.longitude;
+    latitudeElement.textContent = geoData.location.latitude;
+    timezoneElement.textContent = geoData.time_zone.name;
+    currencyElement.textContent = `${geoData.currency.name} (${geoData.currency.code}) - ${geoData.currency.symbol}`;
 
-    console.log("Respuesta completa de geolocalización:", geoData.time_zone.dst_start.utc_time, geoData.time_zone.name,);
+    countryFlagElement.src = geoData.location.country_flag;
+    countryFlagElement.alt = `Bandera de ${geoData.location.country_name}`;
+
+    console.log("Respuesta completa de geolocalización:", geoData);
 
     statusElement.textContent = "Información cargada correctamente.";
   } catch (error) {
     console.error("Error:", error);
-
-    ipElement.textContent = "No disponible";
-    continentElement.textContent = "No disponible";
-    cityElement.textContent = "No disponible";
-
+    mostrarError();
     statusElement.textContent = "Ocurrió un error al consultar las APIs.";
   }
 }

@@ -15,7 +15,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
   padding: 20px;
 }
 
@@ -37,6 +37,22 @@ h1 {
   margin-bottom: 24px;
 }
 
+.flag-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#countryFlag {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  padding: 8px;
+}
+
 .info-box {
   background: #f8fafc;
   border: 2px solid #dbeafe;
@@ -47,7 +63,7 @@ h1 {
 
 .info-box p {
   margin-bottom: 12px;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
 }
 
 .info-box p:last-child {
@@ -74,4 +90,19 @@ button:hover {
   margin-top: 16px;
   text-align: center;
   color: #6b7280;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 20px;
+  }
+
+  .info-box p {
+    font-size: 0.95rem;
+  }
+
+  #countryFlag {
+    width: 80px;
+    height: 80px;
+  }
 }
